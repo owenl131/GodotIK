@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://World.cs" type="Script" id=1]
+[ext_resource path="res://Camera.cs" type="Script" id=2]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 100, 100 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.458824, 0.447059, 0.447059, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 100, 100 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.223529, 0.188235, 0.188235, 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 100, 100 )
+
+[node name="World" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="CameraContainer" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="CameraContainer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 10 )
+script = ExtResource( 2 )
+
+[node name="Back" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -10 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Bottom" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 5 )
+
+[node name="Left" type="MeshInstance" parent="."]
+transform = Transform( -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 0, 0, 1, -10, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="SpotLight Right" type="SpotLight" parent="."]
+transform = Transform( -1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 15, 0, 0 )
+light_color = Color( 0.811765, 0.784314, 0.0980392, 1 )
+shadow_enabled = true
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="SpotLight Top" type="SpotLight" parent="."]
+transform = Transform( -3.56344e-08, -0.975787, 0.218722, -1.58976e-07, 0.218722, 0.975787, -1, 0, -1.62921e-07, 1.86649, 10.2489, 0 )
+light_color = Color( 0.811765, 0.784314, 0.0980392, 1 )
+shadow_enabled = true
+spot_range = 50.0
+spot_angle = 20.0
+
+[node name="SpotLight Back" type="SpotLight" parent="."]
+transform = Transform( 0.987992, 0, -0.154504, 0, 1, 0, 0.154503, 0, 0.987992, 0, 0, 8.71248 )
+shadow_enabled = true
+spot_range = 40.0
+spot_angle = 40.0
