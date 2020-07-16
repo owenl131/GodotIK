@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "Arm",
+"language": "GDScript",
+"path": "res://Arm.gd"
+}, {
+"base": "Spatial",
+"class": "Bee",
+"language": "GDScript",
+"path": "res://Bee.gd"
+}, {
+"base": "Spatial",
+"class": "Jt",
+"language": "GDScript",
+"path": "res://Joint.gd"
+}, {
+"base": "Reference",
+"class": "Lib",
+"language": "GDScript",
+"path": "res://Vecmath.gd"
+}, {
+"base": "Reference",
+"class": "Solver",
+"language": "GDScript",
+"path": "res://Solver.gd"
+} ]
+_global_script_class_icons={
+"Arm": "",
+"Bee": "",
+"Jt": "",
+"Lib": "",
+"Solver": ""
+}
+
+[application]
+
+config/name="IK3"
+run/main_scene="res://World.tscn"
+config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
