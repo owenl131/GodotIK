@@ -1,6 +1,5 @@
 using Godot;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System;
 
 public class Solver
@@ -99,8 +98,8 @@ public class Solver
         var svd = SVD(matrix);
         float[] singulars = svd.Item1;
         float[,] u = svd.Item2, v = svd.Item3;
-        Debug.Assert(u.GetLength(0) == u.GetLength(1) && u.GetLength(0) == matrix.GetLength(0));
-        Debug.Assert(v.GetLength(0) == v.GetLength(1) && v.GetLength(0) == matrix.GetLength(1));
+        // Debug.Assert(u.GetLength(0) == u.GetLength(1) && u.GetLength(0) == matrix.GetLength(0));
+        // Debug.Assert(v.GetLength(0) == v.GetLength(1) && v.GetLength(0) == matrix.GetLength(1));
         for (int i = 0; i < singulars.Length; i++)
         {
             if (singulars[i] > eps)
@@ -117,8 +116,8 @@ public class Solver
         result = Vecmath.Mul(
             partial,
             Vecmath.Transpose(u));
-        Debug.Assert(result.GetLength(0) == matrix.GetLength(1));
-        Debug.Assert(result.GetLength(1) == matrix.GetLength(0));
+        // Debug.Assert(result.GetLength(0) == matrix.GetLength(1));
+        // Debug.Assert(result.GetLength(1) == matrix.GetLength(0));
         return result;
     }
 
@@ -127,9 +126,7 @@ public class Solver
         float[,] jacobian = ComputeJacobian();
         Vector3 current = endpoint.GlobalTransform.origin;
         Vector3 dx = target - current;
-        // GD.Print(target, current);
-        // GD.Print(dx);
-        OS.SetWindowTitle("Dist: " + dx.Length());
+        // OS.SetWindowTitle("Dist: " + dx.Length());
         float[] dposition = new float[]{dx.x, dx.y, dx.z};
         float[,] damped = Vecmath.ScaleAdd(
             Vecmath.Mul(Vecmath.Transpose(jacobian), jacobian),
@@ -161,10 +158,10 @@ public class Solver
         float[,] xa = Vecmath.Mul(inv, mat);
         float[,] axa = Vecmath.Mul(ax, mat);
         float[,] xax = Vecmath.Mul(xa, inv);
-        Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(axa, mat, -1)));
-        Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(xax, inv, -1)));
-        Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(ax, Vecmath.Transpose(ax), -1)));
-        Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(xa, Vecmath.Transpose(xa), -1)));
+        // Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(axa, mat, -1)));
+        // Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(xax, inv, -1)));
+        // Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(ax, Vecmath.Transpose(ax), -1)));
+        // Debug.Assert(Vecmath.IsZero(Vecmath.ScaleAdd(xa, Vecmath.Transpose(xa), -1)));
     }
 
     public void TestSVD(float[,] mat)
@@ -175,6 +172,6 @@ public class Solver
         var v = svd.Item3;
         var res = Vecmath.Mul(Vecmath.Mul(u, singular), Vecmath.Transpose(v));
         float[,] diff = Vecmath.ScaleAdd(mat, res, -1);
-        Debug.Assert(Vecmath.IsZero(diff));
+        // Debug.Assert(Vecmath.IsZero(diff));
     }
 }

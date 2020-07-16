@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public class Bee : Spatial
 {
@@ -38,7 +37,6 @@ public class Bee : Spatial
     public void OnTimeout()
     {
         target = GenerateRandomPosition();
-        GD.Print(target);
     }
 
     public override void _PhysicsProcess(float delta)
@@ -50,7 +48,6 @@ public class Bee : Spatial
         position += dir * speed * delta;
         Transform newTransform = new Transform(Basis.Identity, position);
         GlobalTransform = newTransform;
-        GD.Print(GlobalTransform.origin, target);
     }
     
     public Vector3 GenerateRandomPosition()

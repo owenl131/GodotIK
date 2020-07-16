@@ -1,11 +1,9 @@
 using Godot;
-using System.Diagnostics;
 
 public class Vecmath
 {
     public static float Dot(float[] v1, float[] v2)
     {
-        Debug.Assert(v1.Length == v2.Length);
         float result = 0;
         for (int i = 0; i < v1.Length; i++)
         {
@@ -86,7 +84,6 @@ public class Vecmath
 
     public static float[] Mul(float[,] mat, float[] vec)
     {
-        Debug.Assert(mat.GetLength(1) == vec.Length);
         float[] result = new float[mat.GetLength(0)];
         for (int i = 0; i < mat.GetLength(0); i++)
         {
@@ -98,7 +95,6 @@ public class Vecmath
 
     public static float[,] Mul(float[,] m1, float[,] m2)
     {
-        Debug.Assert(m1.GetLength(1) == m2.GetLength(0));
         float[,] result = new float[m1.GetLength(0), m2.GetLength(1)];
         for (int i = 0; i < m1.GetLength(0); i++)
         {
@@ -124,14 +120,14 @@ public class Vecmath
         return result;
     }
 
-    public static void Print(float[,] mat)
-    {
-        GD.Print("Matrix: ", mat.GetLength(0), " ", mat.GetLength(1));
-        foreach (float item in mat)
-        {
-            GD.Print(item);
-        }
-    }
+    // public static void Print(float[,] mat)
+    // {
+    //     GD.Print("Matrix: ", mat.GetLength(0), " ", mat.GetLength(1));
+    //     foreach (float item in mat)
+    //     {
+    //         GD.Print(item);
+    //     }
+    // }
 
     public static float[,] OuterProduct(float[] v1, float[] v2)
     {
@@ -162,8 +158,6 @@ public class Vecmath
 
     public static float[,] ScaleAdd(float[,] mat1, float[,] mat2, float s)
     {
-        Debug.Assert(mat1.GetLength(0) == mat2.GetLength(0));
-        Debug.Assert(mat1.GetLength(1) == mat2.GetLength(1));
         for (int i = 0; i < mat1.GetLength(0); i++)
         {
             for (int j = 0; j < mat1.GetLength(1); j++)
