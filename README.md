@@ -4,6 +4,8 @@ Basic IK from scratch. Currently has 4 joints for 3 target variables.
 
 ![](screenshots/screencapture.gif)
 
+Originally was written in C#, but I had to rewrite in gdscript to export to HTML5. See the live demo!
+
 # References
 
 [1] "Solving Inverse Kinematics Constraint Problems for Highly Articulated Models" by Kang Teresa Ge
