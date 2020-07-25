@@ -43,11 +43,12 @@ public class Solver
         return Vecmath.Normalized(result);
     }
 
-    public float[] SVD1D(float[,] matrix, float eps=1E-8f)
+    public float[] SVD1D(float[,] matrix, float eps=1E-6f)
     {
         float[] lastIteration;
         float[] currentIteration = RandomUnitVector(matrix.GetLength(1));
         float[,] b = Vecmath.Mul(Vecmath.Transpose(matrix), matrix);
+        // find eigenvectors of A^T*A
         int iterations = 0;
         while (iterations < 100)
         {
@@ -60,6 +61,7 @@ public class Solver
             }
             iterations += 1;
         }
+        GD.Print(iterations);
         return currentIteration;
     }
 
@@ -73,7 +75,7 @@ public class Solver
         float[,] remaining = Vecmath.Copy(matrix);
         for (int i = 0; i < Math.Min(matrix.GetLength(0), matrix.GetLength(1)); i++)
         {
-            float[] v = SVD1D(remaining, eps);
+            float[] v = SVD1D(remaining);
             float[] u = Vecmath.Mul(matrix, v);
             float[,] contribution = Vecmath.OuterProduct(u, v);
             float sigma = Vecmath.Length(u);

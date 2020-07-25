@@ -17,7 +17,6 @@ _global_script_class_icons={
 
 config/name="IK"
 run/main_scene="res://World.tscn"
-run/disable_stdout=true
 run/disable_stderr=true
 config/icon="res://icon.png"
 

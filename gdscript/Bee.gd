@@ -33,7 +33,7 @@ func _ready():
 	timer = Timer.new()
 	add_child(timer)
 	var _res = timer.connect("timeout", self, "on_timeout")
-	timer.start(4)
+	timer.start(3)
 
 func on_timeout():
 	target = generate_random_position()

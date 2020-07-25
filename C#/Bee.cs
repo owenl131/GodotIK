@@ -30,8 +30,8 @@ public class Bee : Spatial
 
         timer = new Timer();
         AddChild(timer);
-        // timer.Connect("timeout", this, "OnTimeout");
-        // timer.Start(4);
+        timer.Connect("timeout", this, "OnTimeout");
+        timer.Start(4);
     }
 
     public void OnTimeout()

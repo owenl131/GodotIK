@@ -34,7 +34,7 @@ func random_unit_vector(dims: int) -> Array:
 		result[i] = 2 * randf() - 1
 	return Lib.normalized(result)
 
-func svd_1d(matrix: Array, eps: float=1e-8) -> Array:
+func svd_1d(matrix: Array, eps: float=1e-5) -> Array:
 	var _m: int = matrix.size()
 	var n: int = matrix[0].size()
 	var last_iteration: Array
@@ -50,7 +50,7 @@ func svd_1d(matrix: Array, eps: float=1e-8) -> Array:
 		iterations += 1
 	return curr_iteration
 
-func svd(matrix: Array, eps: float=1e-8):
+func svd(matrix: Array, eps: float=1e-5):
 	var m: int = matrix.size()
 	var n: int = matrix[0].size()
 	var sigmas = Array()
@@ -72,7 +72,7 @@ func svd(matrix: Array, eps: float=1e-8):
 		remaining = Lib.scale_add(remaining, contrib, -1)
 	return [sigmas, us, vs]
 
-func compute_pseudoinverse(matrix: Array, eps: float=1e-8):
+func compute_pseudoinverse(matrix: Array, eps: float=1e-5):
 	var m = matrix.size()
 	var n: int = matrix[0].size()
 	var decomp = svd(matrix)
